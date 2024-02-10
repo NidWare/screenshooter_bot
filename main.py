@@ -64,11 +64,14 @@ def create_final_photo(original_img_path: str, screenshot_img_path: str, screen_
     img_with_mask = cv2.bitwise_and(original_img, inv_mask)
     final_img = cv2.bitwise_or(img_with_mask, transformed_screenshot)
 
+    # Convert the final image from BGR to RGB
+    final_img_rgb = cv2.cvtColor(final_img, cv2.COLOR_BGR2RGB)
+
     # Set JPEG quality level to 95 for high quality
     compression_parameters = [cv2.IMWRITE_JPEG_QUALITY, 95]
 
     # Save the final image as JPEG
-    cv2.imwrite(f'img/{user_id}.jpg', final_img, compression_parameters)
+    cv2.imwrite(f'img/{user_id}.jpg', final_img_rgb, compression_parameters)
 
 
 if __name__ == '__main__':
