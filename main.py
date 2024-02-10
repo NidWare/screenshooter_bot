@@ -28,7 +28,7 @@ def document(message):
             with open(f'{directory}/{user_id}.png', 'wb') as new_file:
                 new_file.write(downloaded_file)
 
-            create_final_photo('img/photo.png', 'img/screenshot.png', [
+            create_final_photo('img/photo.png', f'img/{user_id}.png', [
                 (315, 931), (1799, 1020), (354, 1818), (1797, 1714)    # Alina's photo coords
             ], user_id)
 
