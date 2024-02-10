@@ -32,7 +32,7 @@ def document(message):
                 (315, 931), (1799, 1020), (354, 1818), (1797, 1714)    # Alina's photo coords
             ], user_id)
 
-            with open(f'img/{user_id}.jpg', 'rb') as image:
+            with open(f'img/final_{user_id}.jpg', 'rb') as image:
                 bot.send_document(message.chat.id, image)
 
             bot.reply_to(message, "Image saved successfully.")
@@ -64,14 +64,10 @@ def create_final_photo(original_img_path: str, screenshot_img_path: str, screen_
     img_with_mask = cv2.bitwise_and(original_img, inv_mask)
     final_img = cv2.bitwise_or(img_with_mask, transformed_screenshot)
 
-    # Convert the final image from BGR to RGB
-    final_img_rgb = cv2.cvtColor(final_img, cv2.COLOR_BGR2RGB)
+    compression_parameters = [cv2.IMWRITE_PNG_COMPRESSION, 3]  # Set PNG compression level to 0 for highest quality
 
-    # Set JPEG quality level to 95 for high quality
-    compression_parameters = [cv2.IMWRITE_JPEG_QUALITY, 95]
-
-    # Save the final image as JPEG
-    cv2.imwrite(f'img/{user_id}.jpg', final_img_rgb, compression_parameters)
+    # Save the final image
+    cv2.imwrite(f'img/final_{user_id}.png', final_img, compression_parameters)
 
 
 if __name__ == '__main__':
