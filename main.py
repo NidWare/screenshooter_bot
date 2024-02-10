@@ -32,7 +32,7 @@ def document(message):
                 (315, 931), (1799, 1020), (354, 1818), (1797, 1714)    # Alina's photo coords
             ], user_id)
 
-            with open(f'img/final_{user_id}.jpg', 'rb') as image:
+            with open(f'img/final_{user_id}.png', 'rb') as image:
                 bot.send_document(message.chat.id, image)
 
             bot.reply_to(message, "Image saved successfully.")
